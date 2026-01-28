@@ -23,7 +23,8 @@ class Board
 
 		int  get(std::size_t r, std::size_t c) const { return grid_[r][c]; }
 		void set(std::size_t r, std::size_t c, int value) { grid_[r][c] = value; }
-
+		
+		std::string toString(int value);
 		const Grid& grid() const { return grid_; }   // renderer can read
 		Grid& grid() { return grid_; }               
 	private:

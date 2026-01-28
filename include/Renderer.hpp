@@ -2,14 +2,12 @@
 #define RENDERER_HPP
 
 #include <SFML/Graphics.hpp>
-
-class Board;
-
+#include "Board.hpp"
 class Renderer
 {
     public:
         Renderer(sf::Font &font);
-        void draw(sf::RenderWindow window, Board& board, int score);
+        void draw(sf::RenderWindow &window, Board& board, int score);
 
     private:
         sf::Font font_;
