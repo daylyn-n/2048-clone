@@ -59,7 +59,7 @@ moves::MoveResult moves::apply(Board& board, Directions dir)
             {
                 std::array<int, 4> line;
                 
-                // get the column from top to bottom
+                // get the row from left ot right
                 for(std::size_t c {}; c < 4;c ++)
                 {
                     line[c] = board.get(r, c);
@@ -69,7 +69,7 @@ moves::MoveResult moves::apply(Board& board, Directions dir)
 
                 for(std::size_t c {}; c < 4; c++)
                 {
-                    board.set(r, c, line[r]);
+                    board.set(r, c, line[c]);
                 }
 
             }
@@ -80,7 +80,7 @@ moves::MoveResult moves::apply(Board& board, Directions dir)
             {
                 std::array<int, 4> line;
              
-                // get the column from bottom up
+                // get the row from right to left
                 for(int c{ 3 }, i {}; c >= 0; --c, ++i)
                 {
                     line[i] = board.get(static_cast<std::size_t>(r) , c);
@@ -123,7 +123,7 @@ void moves::moveLine(std::array<int, 4>& line, MoveResult &res)
         // if pending is equal to our current tile, we merge them in our result, and then increment our write
         else if(pending == cur)
         {
-            temp[tempIndex++] = pending * 2 ;
+            temp[tempIndex++] = pending * 2;
             res.scoreGained += pending * 2;
             pending = 0;
 
