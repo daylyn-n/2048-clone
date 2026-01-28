@@ -36,10 +36,6 @@ void Board::insertHelper(int randPos, int pos, std::size_t r, std::size_t c)
 
 void Board::insertTwoOrFour()
 {
-
-	
-	
-	
 	int zeroCount {};
 	for(std::size_t r {}; r < N; r++)
 	{

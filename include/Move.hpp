@@ -2,14 +2,16 @@
 #define MOVE_HPP
 
 #include <cstdint>
+#include <array>
+#include "Board.hpp"
 
-class Board;
+
 namespace moves
 {
-	enum Directions
-{
-	LEFT, UP, DOWN, RIGHT
-};
+	enum Directions : uint8_t
+	{
+		LEFT, UP, DOWN, RIGHT
+	};
 
 	struct MoveResult
 	{
@@ -19,6 +21,7 @@ namespace moves
 	};
 
 	MoveResult apply(Board& board, Directions dir);
+	void moveLine(std::array<int, 4> &line, MoveResult &res);
 };
 
 #endif

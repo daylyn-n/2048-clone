@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "../include/Board.hpp"
+#include "../include/Move.hpp"
 #include <time.h>
 #include <iostream>
 
@@ -11,8 +12,9 @@ int main()
     
     //board test
     Board board;
-    board.insertTwoOrFour();
-   // board.set(0,0, 2);
+    
+   board.set(0, 3, 2);
+   board.set(2, 3, 2);
   
     for(std::size_t i {}; i < 4; i++)
     {
@@ -22,24 +24,37 @@ int main()
         }
         std::cout << '\n';
     }
-    board.reset();
-
-    for(std::size_t i {}; i < 4; i++)
+    std::cout << '\n';
+    while(true)
     {
-        for(std::size_t j {}; j < 4; j++)
+        char input;
+        std::cin >> input;
+        if(input == 'w') moves::apply(board, moves::Directions::UP);
+        else if(input == 'a')moves::apply(board, moves::Directions::LEFT);
+        else if(input == 'd')moves::apply(board, moves::Directions::RIGHT);
+        else moves::apply(board, moves::Directions::DOWN);
+        board.insertTwoOrFour();
+        for(std::size_t i {}; i < 4; i++)
         {
-            std::cout << board.get(i, j) << ' ';
+            for(std::size_t j {}; j < 4; j++)
+            {
+                std::cout << board.get(i, j) << ' ';
+            }
+            std::cout << '\n';
         }
-        std::cout << '\n';
+       // board.insertTwoOrFour();
+
+       
     }
+   
 
-    while(window.isOpen())
-    {
-        sf::Event e;
-        while(window.pollEvent(e))
+        while(window.isOpen())
         {
-            if(e.type == sf::Event::Closed) window.close();
-        }
+            sf::Event e;
+            while(window.pollEvent(e))
+            {
+                if(e.type == sf::Event::Closed) window.close();
+            }
     }
     return 0;
 }
