@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/src/main.cpp.o -o bin/main  -Wl,-rpath,/mnt/c/Users/dayly/cotin/projects/2048-clone/build/_deps/sfml-build/lib _deps/sfml-build/lib/libsfml-graphics.so.2.6.1 _deps/sfml-build/lib/libsfml-window.so.2.6.1 _deps/sfml-build/lib/libsfml-system.so.2.6.1 
