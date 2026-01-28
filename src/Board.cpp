@@ -1,38 +1,32 @@
 #include "Board.hpp"
+#include <random>
 
-Board::Board()
+int Board::spawnRandomTile()
 {
-	for(auto& row : board_)
-	{
-		row.fill(0);
-	}
-}
-int Board::generateRand()
-{
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<int> dist(0,1);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dist(0,1);
 	
 	return (dist(gen) == 0) ? 2 : 4;
 }
 
-void insertHelper(Array2d& board, int randPos, int pos, int i, j)
+void Board::insertHelper(int randPos, int pos, int i, int j)
 {
 
 	if(pos == randPos)
 	{
-		board[i][j] == generateRand();
+		set(i, j, spawnRandomTile());
 	}
 }
 
-void Board::insertTwoOrFour(Array2d& board)
+void Board::insertTwoOrFour()
 {
 	int zeroCount {};
-	for(int i {}; i < ROW; i++)
+	for(int i {}; i < N; i++)
 	{
-		for(int j {}; j < COL; j++)
+		for(int j {}; j < N; j++)
 		{
-			if(board[i][j] == 0)
+			if(grid_[i][j] == 0)
 				zeroCount++;
 		}
 	}
@@ -41,14 +35,14 @@ void Board::insertTwoOrFour(Array2d& board)
 
 	int randPos {rand() % zeroCount + 1};
 	int pos {};
-	for(int i {}; i < ROW; i++)
+	for(int i {}; i < N; i++)
 	{
-		for(int j {}; j < COL; j++)
+		for(int j {}; j < N; j++)
 		{
-			if(board[i][j] == 0)
+			if(grid_[i][j] == 0)
 			{
 				pos++;
-				insertHelper(board, rand, pos, i, j);
+				insertHelper(randPos, pos, i, j);
 				return;
 			}
 		}
