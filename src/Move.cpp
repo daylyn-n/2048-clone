@@ -1,5 +1,5 @@
 #include "../include/Move.hpp"
-
+void moveLine(Board& board);
 
 moves::MoveResult moves::apply(Board& board, Directions dir)
 {

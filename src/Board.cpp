@@ -36,6 +36,10 @@ void Board::insertHelper(int randPos, int pos, std::size_t r, std::size_t c)
 
 void Board::insertTwoOrFour()
 {
+
+	
+	
+	
 	int zeroCount {};
 	for(std::size_t r {}; r < N; r++)
 	{
@@ -48,7 +52,11 @@ void Board::insertTwoOrFour()
 
 	if(zeroCount == 0) return;
 
-	int randPos {rand() % zeroCount + 1};
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dist(0,10000);
+	
+	int randPos {dist(gen) % zeroCount + 1};
 	int pos {};
 	for(std::size_t r {}; r < N; r++)
 	{
@@ -56,9 +64,10 @@ void Board::insertTwoOrFour()
 		{
 			if(grid_[r][c] == 0)
 			{
-				pos++;
+				
 				insertHelper(randPos, pos, r, c);
-				return;
+				pos++;
+				if(grid_[r][c] != 0) return;
 			}
 		}
 	}
