@@ -7,7 +7,6 @@
 class Board
 {
 	
-	
 	public:
 		static constexpr std::size_t N = 4;
 		using Grid = std::array<std::array<int, N>, N>;
@@ -16,8 +15,9 @@ class Board
 
 		void reset();                    
 		int spawnRandomTile();   
-		void insertHelper(int randPos, int pos, int row, int col);
-		void insertTwoOrFour();      
+		void insertHelper(int randPos, int pos, std::size_t row, std::size_t col);
+		void insertTwoOrFour();  
+		bool isAdj(std::size_t r, std::size_t c) const;    
 		bool canMove() const;            
 		bool isGameOver() const { return !canMove(); }
 
