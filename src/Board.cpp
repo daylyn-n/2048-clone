@@ -47,6 +47,21 @@ void Board::insertTwoOrFour()
 	}
 
 	if(zeroCount == 0) return;
+	
+	// fixed an edge case, where if there was only one zero left,
+	// it wouldnt fill in that tile with a two or four
+	if(zeroCount == 1)
+	{
+		for(std::size_t r {}; r < N; r++)
+		{
+			for(std::size_t c {}; c < N; c++)
+			{
+				if(grid_[r][c] == 0) 
+					grid_[r][c] = spawnRandomTile();
+				
+			}
+		}
+	}
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -105,4 +120,30 @@ bool Board::canMove() const
 		}
 	}
 	return false;
+}
+
+bool Board::isEqual(Board board2) const
+{
+	for(std::size_t r { }; r < N; r++)
+	{
+		for(std::size_t c { }; c < N; c++)
+		{
+			if(grid_[r][c] != board2.get(r, c))
+				return false;
+		}
+	}
+	return true;
+}
+
+Board& Board::operator=(const Board& b)
+{
+	if(this == &b) return *this;
+	for(std::size_t r { }; r < N; r++)
+	{
+		for(std::size_t c { }; c < N; c++)
+		{
+			grid_[r][c] = b.get(r,c);
+		}
+	}
+	return *this;
 }

@@ -15,6 +15,7 @@ class Game
 	
 	public:
 		Game();
+		void start();
 		void restart(); // initiliaze board values to 0
 		void quit();
 		void displayScore(int score);

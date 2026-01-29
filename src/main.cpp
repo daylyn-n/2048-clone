@@ -16,6 +16,9 @@ int main()
     //board test
     Board board;
     Renderer boardView(font);
+    board.insertTwoOrFour();
+    board.insertTwoOrFour();
+    
 
 
 
@@ -40,8 +43,9 @@ int main()
   
     
        
-
+    boardView.draw(window, board, 0);
    
+    
 
     while(window.isOpen())
     {
@@ -49,35 +53,54 @@ int main()
         while(window.pollEvent(e))
         {
             if(e.type == sf::Event::Closed) window.close();
-        }
-
-    
-        while(true)
-        {
-            char input;
-            std::cin >> input;
-            if(input == 'w') moves::apply(board, moves::Directions::UP);
-            else if(input == 'a')moves::apply(board, moves::Directions::LEFT);
-            else if(input == 'd')moves::apply(board, moves::Directions::RIGHT);
-            else moves::apply(board, moves::Directions::DOWN);
-            board.insertTwoOrFour();
-            for(std::size_t i {}; i < 4; i++)
+            // key presses
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
             {
-                for(std::size_t j {}; j < 4; j++)
-                {
-                    std::cout << board.get(i, j) << ' ';
-                }
-                std::cout << '\n';
-            }
-    
-
+                Board board2;
+                board2 = board;
+                moves::apply(board, moves::Directions::UP);
+                if(!board.isEqual(board2))
+                    board.insertTwoOrFour();
+              
                 
-            window.clear();
-            boardView.draw(window, board, 0);
-            window.display();
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+            {
+                Board board2;
+                board2 = board;
+                moves::apply(board, moves::Directions::LEFT);
+                if(!board.isEqual(board2))
+                    board.insertTwoOrFour();
+               
+               
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            {
+                Board board2;
+                board2 = board;
+                moves::apply(board, moves::Directions::RIGHT);
+                 if(!board.isEqual(board2))
+                    board.insertTwoOrFour();
+         
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+            {
+                Board board2;
+                board2 = board;
+                moves::apply(board, moves::Directions::DOWN);
+                 if(!board.isEqual(board2))
+                    board.insertTwoOrFour();
+               
+                
+            }
         }
-    
+      
+        window.clear();
+        boardView.draw(window, board, 0);
+        window.display();
     }
-
-    return 0;
+    
 }
+
+    
+

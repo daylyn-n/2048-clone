@@ -20,13 +20,17 @@ class Board
 		bool isAdj(std::size_t r, std::size_t c) const;    
 		bool canMove() const;            
 		bool isGameOver() const { return !canMove(); }
+		bool isEqual(Board board2) const; // move check
 
 		int  get(std::size_t r, std::size_t c) const { return grid_[r][c]; }
 		void set(std::size_t r, std::size_t c, int value) { grid_[r][c] = value; }
 		
-		std::string toString(int value);
+		
 		const Grid& grid() const { return grid_; }   // renderer can read
-		Grid& grid() { return grid_; }               
+		Grid& grid() { return grid_; }         
+		
+		// operator overload =
+		Board& operator=(const Board& b);
 	private:
 		Grid grid_;
 };

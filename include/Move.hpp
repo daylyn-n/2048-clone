@@ -23,5 +23,4 @@ namespace moves
 	MoveResult apply(Board& board, Directions dir);
 	void moveLine(std::array<int, 4> &line, MoveResult &res);
 };
-
 #endif
