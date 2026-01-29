@@ -56,39 +56,33 @@ int main()
             // key presses
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
             {
-                Board board2;
-                board2 = board;
-                moves::apply(board, moves::Directions::UP);
-                if(!board.isEqual(board2))
+               
+                moves::MoveResult res = moves::apply(board, moves::Directions::UP);
+                if(res.moved)
                     board.insertTwoOrFour();
               
                 
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             {
-                Board board2;
-                board2 = board;
-                moves::apply(board, moves::Directions::LEFT);
-                if(!board.isEqual(board2))
+                
+                moves::MoveResult res = moves::apply(board, moves::Directions::LEFT);
+                if(res.moved)
                     board.insertTwoOrFour();
                
                
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             {
-                Board board2;
-                board2 = board;
-                moves::apply(board, moves::Directions::RIGHT);
-                 if(!board.isEqual(board2))
+                moves::MoveResult res = moves::apply(board, moves::Directions::RIGHT);
+                 if(res.moved)
                     board.insertTwoOrFour();
          
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
             {
-                Board board2;
-                board2 = board;
-                moves::apply(board, moves::Directions::DOWN);
-                 if(!board.isEqual(board2))
+                moves::MoveResult res = moves::apply(board, moves::Directions::DOWN);
+                 if(res.moved)
                     board.insertTwoOrFour();
                
                 

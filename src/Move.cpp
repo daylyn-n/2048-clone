@@ -107,6 +107,7 @@ moves::MoveResult moves::apply(Board& board, Directions dir)
 void moves::moveLine(std::array<int, 4>& line, MoveResult &res)
 {
     std::array<int, 4> temp { {0, 0, 0, 0} };
+    std::array<int, 4> original { line };
     
     int pending { };
     int tempIndex { };
@@ -137,4 +138,5 @@ void moves::moveLine(std::array<int, 4>& line, MoveResult &res)
     }
     if(pending != 0) temp[tempIndex] = pending;
     line = temp;
+    if(line != original) res.moved = true;
 }
